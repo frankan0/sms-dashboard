@@ -16,7 +16,9 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o sms-dashboard ./cmd/server/main.go
 
 # Stage 3: Final production image
 FROM alpine:latest
-RUN apk add --no-cache ca-certificates tzdata
+RUN apk add --no-cache ca-certificates tzdata \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone
 WORKDIR /app
 # Create data directory for SQLite persistence
 RUN mkdir -p /app/data
