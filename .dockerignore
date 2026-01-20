@@ -1,0 +1,8 @@
+node_modules
+.git
+.vscode
+*.db
+*.log
+web/node_modules
+Dockerfile
+.dockerignore
